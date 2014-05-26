@@ -12,8 +12,7 @@ if 'OPENSHIFT_REPO_DIR' in os.environ:
      except IOError:
          pass
 
-import tornado.wsgi
-from openshift import handlers
+import openshift
 
 if 'OPENSHIFT_REPO_DIR' in os.environ:
      settings = {
@@ -26,4 +25,4 @@ else:
           'template_path' : os.path.join(os.getcwd(), 'wsgi/templates'),
      }
 
-application = tornado.wsgi.WSGIApplication(handlers, **settings)
+application = openshift.get_app(settings)

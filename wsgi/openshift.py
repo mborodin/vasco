@@ -1,10 +1,13 @@
-#!/usr/bin/env python
-import tornado.web
+#!/usr/bin/env python3
+from flask import Flask
 
-class MainHandler(tornado.web.RequestHandler):
-     def get(self):
-          self.render('index.html')
+app = Flask(__name__)
 
-# Put here yours handlers.
 
-handlers = [(r'/',MainHandler),]
+@app.route('/')
+def index():
+    return "Hello World!"
+
+
+def get_app(settings):
+    return app

@@ -4,12 +4,13 @@ from setuptools import setup
 # Put here required packages or
 # Uncomment one or more lines below in the install_requires section
 # for the specific client drivers/modules your application needs.
-packages = ['tornado',
+packages = [
+            'flask'
            ]
 
-setup(name='YourAppName', version='1.0',
-      description='OpenShift Python-3.3 / Tornado Web Server based application',
-      author='Your Name', author_email='admin@example.org',
+setup(name='Vasco', version='1.0',
+      description='Vasco travel manegement platform',
+      author='Maksym Borodin', author_email='borodin.maksym@gmail.com',
       url='https://pypi.python.org/pypi',
       install_requires=packages,
      )
