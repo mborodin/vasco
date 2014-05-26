@@ -1,28 +1,14 @@
 #!/usr/bin/env python
-import os
-import sys
+from flask import Flask, render_template
 
-if 'OPENSHIFT_REPO_DIR' in os.environ:
-     sys.path.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi',))
-     virtenv = os.environ['OPENSHIFT_PYTHON_DIR'] + '/virtenv/venv'
-     os.environ['PYTHON_EGG_CACHE'] = os.path.join(virtenv, 'lib/python3.3/site-packages')
-     virtualenv = os.path.join(virtenv, 'bin/activate_this.py')
-     try:
-        exec(compile(open(virtualenv).read(), virtualenv, 'exec'),dict(__file__ = virtualenv))
-     except IOError:
-         pass
+import config
 
-import openshift
+app = Flask(__name__)
 
-if 'OPENSHIFT_REPO_DIR' in os.environ:
-     settings = {
-          'static_path' : os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi/static'),
-          'template_path' : os.path.join(os.environ['OPENSHIFT_REPO_DIR'], 'wsgi/templates'),
-     }
-else:
-     settings = {
-          'static_path' : os.path.join(os.getcwd(), 'wsgi/static'),
-          'template_path' : os.path.join(os.getcwd(), 'wsgi/templates'),
-     }
 
-application = openshift.get_app(settings)
+@app.route('/')
+def index():
+    return render_template('index.html', title='Plan your journey! - Vasco')
+
+
+application = app
