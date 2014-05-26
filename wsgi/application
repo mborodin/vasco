@@ -11,4 +11,6 @@ def index():
     return render_template('index.html', title='Plan your journey! - Vasco')
 
 
+app.debug = True
+
 application = app
