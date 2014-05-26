@@ -14,21 +14,10 @@ if 'OPENSHIFT_REPO_DIR' in os.environ:
 
 
 
-from flask import Flask, render_template
 
-import config
+import openshift
 
-app = Flask(__name__)
-
-
-@app.route('/')
-def index():
-    return render_template('index.html', title='Plan your journey! - Vasco')
-
-
-app.debug = True
-
-application = app
+application = openshift.app
 
 if __name__ == '__main__':
     app.run()

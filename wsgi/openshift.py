@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
+
+app.debug = True
 
 
 @app.route('/')
 def index():
-    return "Hello World!"
-
-
-def get_app(settings):
-    return app
+    return render_template('index.html', title='Plan your journey! - Vasco')
