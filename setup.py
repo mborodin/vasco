@@ -5,7 +5,10 @@ from setuptools import setup
 # Uncomment one or more lines below in the install_requires section
 # for the specific client drivers/modules your application needs.
 packages = [
-            'flask'
+            'flask',
+#            'flask-assets',
+            'flask-babel',
+            'lettuce'
            ]
 
 setup(name='Vasco', version='1.0',
