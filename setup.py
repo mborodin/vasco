@@ -6,7 +6,8 @@ from setuptools import setup
 # for the specific client drivers/modules your application needs.
 packages = [
             'flask',
-#            'flask-assets',
+            'flask-login',
+            'flask-oauthlib',
             'flask-babel',
             'lettuce'
            ]
