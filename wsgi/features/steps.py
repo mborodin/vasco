@@ -1,4 +1,4 @@
-from openshift import app
+from vasco import app
 from lettuce import step, world, before, after
 from nose.tools import assert_equals, assert_true
 

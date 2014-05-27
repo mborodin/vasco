@@ -1,7 +1,8 @@
 from flask.ext.babel import Babel
 from flask import g, request
+from . import app
 
-babel = Babel()
+babel = Babel(app)
 
 
 @babel.localeselector
@@ -17,7 +18,3 @@ def get_timezone():
     user = getattr(g, 'user', None)
     if user is not None:
         return user.timezone
-
-
-def setup(app):
-    babel.init_app(app)

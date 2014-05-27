@@ -15,9 +15,9 @@ if 'OPENSHIFT_REPO_DIR' in os.environ:
 
 
 
-import openshift
+from vasco import app, localization, login
 
-application = openshift.app
+application = app
 
 if __name__ == '__main__':
     app.run()
