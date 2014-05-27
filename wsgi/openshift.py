@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 from flask import Flask, render_template
-from vasco import localizatio, login
+from vasco import localization, login
 
 app = Flask(__name__)
 
 app.debug = True
 
 localization.setup(app)
-login.setup(app
+login.setup(app)
 
 
 @app.route('/')
