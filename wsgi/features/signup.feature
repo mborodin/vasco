@@ -3,6 +3,11 @@ Feature: Sign up user
     Google, Facebook, Twitter
     User account should be prefilled with data from corresponding provider
 
+    Scenario: Fail test - try to signup with undefined provider
+        Given I have selected to sign up with undefined
+        When I submit login dummy and password dummy
+        Then I got response code 404
+
     Scenario Outline: Sign up user using OAuth2 provider
         Given I have selected to sign up with <provider>
         When I submit login <login> and password <password>
