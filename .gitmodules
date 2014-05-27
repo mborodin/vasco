@@ -1,0 +1,3 @@
+[submodule "libs/flask-lettuce"]
+	path = libs/flask-lettuce
+	url = https://github.com/dqminh/flask-lettuce.git
