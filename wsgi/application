@@ -15,9 +15,12 @@ if 'OPENSHIFT_REPO_DIR' in os.environ:
 
 
 
-from vasco import app, localization, login
+from vasco import app
 
 application = app
 
 if __name__ == '__main__':
-    app.run()
+    try:
+        app.run(port=80, debug=True)
+    except:
+        app.run(port=8080, debug=True)
