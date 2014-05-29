@@ -1,7 +1,7 @@
 from flask.ext.login import LoginManager
 from flask.ext.babel import lazy_gettext
-from flask_oauthlib.client import OAuth
-from flask import abort, url_for, request
+from flask_oauthlib.client import OAuth, OAuthException
+from flask import abort, url_for, request, session
 from . import app
 from .config import config
 
@@ -35,11 +35,10 @@ def authorized_handler(f):
 
 
 def tokengetter(f):
-    w = f
     for p in providers:
         provider = providers[p]
-        w = provider.tokengetter(w)
-    return w
+        provider.tokengetter(lambda: f(provider.name))
+    return f
 
 
 @loginManager.user_loader
@@ -52,7 +51,9 @@ def login(providername):
     if not providername in providers:
         abort(404)
     #for rule in app.url_map.iter_rules():
-        #print('%s => %s' % (url_for(rule.endpoint, provider='facebook'), rule.endpoint))
+        #print('%s => %s' %
+              #(url_for(rule.endpoint, provider='facebook'),
+               #rule.endpoint))
     provider = providers[providername]
     callback = url_for('authorized',
                        next=request.args.get('next') or request.referrer
@@ -66,3 +67,20 @@ def login(providername):
 @authorized_handler
 def authorized(resp, provider):
     print('dupa')
+    if resp is None:
+        return 'Access denied: reason=%s error=%s' % (
+            request.args['error_reason'],
+            request.args['error_description']
+        )
+    if isinstance(resp, OAuthException):
+        return 'Access denied: %s' % resp.message
+
+    session['%s_oauth_token' % provider] = (resp['access_token'], '')
+    me = providers[provider].get('/me')
+    return 'Logged in as id=%s name=%s redirect=%s' % \
+        (me.data['id'], me.data['name'], request.args.get('next'))
+
+
+@tokengetter
+def get_oauth_token(provider):
+    return session.get('%s_oauth_token' % provider)
