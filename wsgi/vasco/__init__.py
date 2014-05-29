@@ -1,9 +1,7 @@
-from flask import Flask, render_template
+from .application import app
+import login
+import localization
 
-app = Flask(__name__)
-app.debug = True
-
-
-@app.route('/')
-def index():
-    return render_template('index.html', title='Plan your journey! - Vasco')
+make_pep8_happy = app
+make_pep8_happy = login
+make_pep8_happy = localization
