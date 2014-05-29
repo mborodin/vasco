@@ -1,4 +1,11 @@
-config = {
+import os
+
+try:
+    environ = os.environ['VASCO_ENV']
+except:
+    environ = 'dev'
+
+configs = {
     'production': {
         'providers': {
             'facebook': {
@@ -19,6 +26,10 @@ config = {
                 'token_url': '/oauth/access_token',
                 'authorize_url': 'https://www.facebook.com/dialog/oauth'
             }
-        }
+        },
+        'secret_key': '8XIGB0t+D27gYyBYVv3/hQD9P8RFPYMxrF7o0Vy5iYmEEgS6LILppg',
+        'server_name': 'vasco.local'
     }
 }
+
+config = configs[environ]
