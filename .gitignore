@@ -1,4 +1,5 @@
 *.py[co]
+applicationc
 *.sw[po]
 *.bak
 *.orig
@@ -8,6 +9,7 @@
 *.py.disabled
 .project
 .pydevproject
+.ropeproject
 venv/
 virtenv/
 dist/
