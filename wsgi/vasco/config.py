@@ -27,6 +27,16 @@ configs = {
                 'authorize_url': 'https://www.facebook.com/dialog/oauth'
             }
         },
+        'database': {
+            'db': 'vasco_test',
+            'host': 'localhost',
+            'port': 3306,
+            'user': 'root',
+            'pass': '',
+            'pool': False,
+            'max_connections': 20,
+            'stale_timeout': 600
+        },
         'secret_key': '8XIGB0t+D27gYyBYVv3/hQD9P8RFPYMxrF7o0Vy5iYmEEgS6LILppg',
         'server_name': 'vasco.local'
     }
