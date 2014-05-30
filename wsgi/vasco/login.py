@@ -8,6 +8,7 @@ from .config import config
 loginManager = LoginManager(app)
 
 loginManager.localize_callback = lazy_gettext
+loginManager.session_protection = 'strong'
 
 oauth = OAuth(app)
 
