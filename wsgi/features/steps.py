@@ -63,9 +63,8 @@ def follow_redirect(step):
     cookies = {}
     for cookie in client.cookie_jar:
         cookies[cookie.name] = cookie.value
-    print(rv.headers['Location'])
     rv = requests.get(rv.headers['Location'], cookies=cookies)
-    #print(rv.content)
+    print(rv.content)
     assert_true(False)
 
 
